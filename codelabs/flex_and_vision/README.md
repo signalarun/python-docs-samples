@@ -109,7 +109,6 @@ take several minutes.
     gcloud app deploy
 
 Visit `https://[YOUR_PROJECT_ID].appspot.com` to view your deployed application.
-[shell2_img]: http://gstatic.com/cloudssh/images/open-btn.png
 
 ![](Screenshot_2020-04-15%20Emotion%20analysis%20on%20photo_reduced.jpg)
 
