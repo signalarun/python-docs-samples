@@ -8,7 +8,7 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="/static/bootstrap.min.css">
 
-    <title>Google Cloud Platform - Face Detection Sample</title>
+    <title>Emotion analysis on photo</title>
   </head>
   <body>
 
@@ -17,10 +17,7 @@
   <div class="collapse" id="navbarToggleExternalContent">
     <div class="bg-light p-4">
       <h5 class="text-dark h4">Happiness Level</h5>
-       <h1 class="text-muted">Google Cloud Platform - Face Detection Sample</h1>
-       <p class="text-muted">This Python Flask application demonstrates App Engine Flexible, Google Cloud
-          Storage, Datastore, and the Cloud Vision API.</p>
-      <span class="text-muted">This webapp predicts happiness level of face from the uploaded photo.Enjoy predicting!</span>
+      <span class="text-muted">This webapp predicts happiness level of the face from uploaded photo.Enjoy predicting!</span>
     </div>
   </div>
   <nav class="navbar sticky-top navbar-dark bg-primary">
@@ -54,34 +51,48 @@ Storage, Datastore, and the Cloud Vision API.</h4> -->
 
   <div class="row border border-primary m-1">
     <div class="col ">
+    <!--  <form action="upload_photo" method="POST" enctype="multipart/form-data">
+      Upload File: <input type="file" name="file"><br>
+      <input type="submit" name="submit" value="Submit">
+     </form> -->
+
      <form class="p-1" action="upload_photo" method="POST" enctype="multipart/form-data">
       <div class="form-group">
        Upload Photo: <input id="file" type="file" accept="image/*" name="file" onchange="Filevalidation()"><br>
       </div>
       
       <!-- <input type="file" accept="image/*" class="btn btn-primary mb-2" name="submit" value="Submit"> -->
-       <button id="upload_button" type="submit" class="btn btn-primary mb-2">Confirm identity</button> 
+      <button id="upload_button" type="submit" class="btn btn-primary mb-2">Confirm identity</button> 
      </form>
+     
     </div>
    </div>
    
 <br>
+ <h6>Uploads</h6>
+ <div class="row m-2">
+       
  
   {% for image_entity in image_entities %}
-    <div class="row m-2">
-     <div class="card">
-      <img class="card-img-top img-thumbnail" src="{{image_entity['image_public_url']}}" alt="Card image cap">
-      <div class="card-body">
-       <h5 class="card-title">Joy Likelihood</h5>
-       <p class="card-text badge badge-success"> {{image_entity['joy']}}</p>
-      </div>
-      <div class="card-footer">
-       <small class="text-muted">{{image_entity['blob_name']}} was uploaded {{image_entity['timestamp']}}</small>
-       </div>
-     </div>
-    </div>
+    
+      
+        
 
+         <div class="card m-1" style="width: 22rem;">
+         <img class="card-img-top img-thumbnail" src="{{image_entity['image_public_url']}}" alt="Card image cap">
+         <div class="card-body">
+         <h5 class="card-title">Joy Likelihood</h5>
+         <p class="card-text badge badge-success"> {{image_entity['joy']}}</p>
+         </div>
+         <div class="card-footer">
+         <small class="text-muted">{{image_entity['blob_name']}} was uploaded {{image_entity['timestamp']}}</small>
+         </div>
+         </div>
+    
+         
   {% endfor %}
+       </div>
+</div>
 
 </div>
 
@@ -96,7 +107,7 @@ Storage, Datastore, and the Cloud Vision API.</h4> -->
                 const fsize = fi.files.item(i).size; 
                 const file = Math.round((fsize / 1024)); 
                 // The size of the file. 
-                if (file >= 4096) { 
+                if (file >= 20000) { 
                     alert("File too Big, please select a file less than 4mb"); 
                     uploadButton.disabled = true;
                 } /*else if (file < 2048) { 
